@@ -1,2 +1,2 @@
 # lol-refund
-**exploit**
+**League of Legends exploit**
