@@ -1,11 +1,11 @@
 import base64
-import psutil
-import os
-import sys
-import requests
-import psutil
-from urllib3 import disable_warnings
 import configparser
+import ctypes
+import os
+import psutil
+import requests
+import sys
+from urllib3 import disable_warnings
 
 disable_warnings()
 
@@ -37,8 +37,12 @@ class LeagueOfLegendsClientAPI(object):
     def __init__(self):
         print('Waiting league client...')
         self.process = get_process_by_name("LeagueClientUx")
-
-        self.lockfile = open(os.path.join(self.process.cwd(), "lockfile"), 'r').read()
+        
+        try:
+            self.lockfile = open(os.path.join(self.process.cwd(), "lockfile"), 'r').read()
+        except:
+            ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+            exit()
 
         split = self.lockfile.split(":")
 
