@@ -1,2 +1,2 @@
 # lol-refund
-**League of Legends exploit**
+**환불 안되는거를 강제로 환불시켜줍니다.**
